@@ -1,0 +1,11 @@
+*.o
+*.a
+*.z1
+*.map
+build/
+obj/
+.vscode/
+.DS_Store
+COOJA.testlog
+*.testlog
+*.log

@@ -1,0 +1,30 @@
+# Ignore version control systems and local metadata
+.git
+**/.git
+.gitignore
+.gitattributes
+.gitmodules
+.gemini
+.antigravityignore
+
+# Ignore compiled binaries and build artifacts
+**/build/
+# **/*.z1 (Makefile.z1'i de sildiği için z1 kuralı devredışı bırakıldı)
+**/*.hex
+**/*.elf
+**/*.o
+**/*.d
+**/*.map
+**/*.a
+**/*.co
+**/*.cfs
+**/*.bin
+**/*.lst
+**/*.sym
+
+# Ignore local documents and PDFs not needed in the running container
+*.pdf
+*.docx
+*.md
+!contiki-ng/**/*.md
+!contiki-ng/**/*.txt

@@ -1,0 +1,26 @@
+services:
+  contiki-ota:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ota-project:latest
+    container_name: contiki_ota_container
+    privileged: true
+    # Contiki-NG requires IPv6 support to run RPL and network simulations
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=0
+    volumes:
+      # [Geliştirici Modu] Konak makinedeki kod değişikliklerinin anında konteynere yansıması için:
+      # İmajı tamamen paket halinde dağıtmak isterseniz aşağıdaki satırı yorum satırına (#) getirebilirsiniz.
+      - ./contiki-ng:/home/user/contiki-ng
+      
+      # Cooja GUI simülatörünü ana ekrana yansıtabilmek için X11 soket eşlemesi (Linux/WSL2 için)
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      # DISPLAY ortam değişkeni: Windows'ta host.docker.internal üzerinden X11 sunucusuna bağlanır
+      - DISPLAY=host.docker.internal:0.0
+    # Konteyneri etkileşimli bir terminalde açık tutmak için ayarlar
+    stdin_open: true
+    tty: true
+    command: bash --login
